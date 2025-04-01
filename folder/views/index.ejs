@@ -15,6 +15,7 @@
         <th>ID</th>
         <th>Text</th>
         <th>Author</th>
+        <th>Update</th>
       </tr>
     </thead>
     <tbody>
@@ -30,11 +31,16 @@
             <td>
               <%= quote.author %>
             </td>
+            <td>
+              <a href="/update?id=<%= quote.id %>">
+                <button>Update</button>
+              </a>
+            </td>
           </tr>
           <% }); %>
             <% } else { %>
               <tr>
-                <td colspan="3">No quotes available.</td>
+                <td colspan="4">No quotes available.</td>
               </tr>
               <% } %>
     </tbody>

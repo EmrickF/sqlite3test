@@ -38,13 +38,13 @@
   <h1>Update a Quote</h1>
   <form onsubmit="updateQuote(event)">
     <label for="id">ID:</label>
-    <input type="number" id="id" name="id" required>
+    <input type="number" id="id" name="id" value="<%= quote.id %>" readonly>
     <br>
     <label for="text">Quote:</label>
-    <input type="text" id="text" name="text" required>
+    <input type="text" id="text" name="text" value="<%= quote.text %>" required>
     <br>
     <label for="author">Author:</label>
-    <input type="text" id="author" name="author" required>
+    <input type="text" id="author" name="author" value="<%= quote.author %>" required>
     <br>
     <button type="submit">Update</button>
   </form>

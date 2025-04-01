@@ -35,7 +35,24 @@ app.get('/delete', (req, res) => {
 })
 
 app.get('/update', (req, res) => {
-  res.render('update') 
+  const { id } = req.query
+  if (!id) {
+    res.status(400).send("ID is required to update a quote.")
+    return
+  }
+
+  db.get('SELECT * FROM quote WHERE id = ?', [id], (err, row) => {
+    if (err) {
+      console.error(err)
+      res.status(500).send("Failed to fetch the quote.")
+      return
+    }
+    if (!row) {
+      res.status(404).send("Quote not found.")
+      return
+    }
+    res.render('update', { quote: row })
+  })
 })
 
 app.post('/api/quote', (req, res) => {
