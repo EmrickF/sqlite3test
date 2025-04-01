@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quotes</title>
 </head>
 
@@ -15,7 +13,7 @@
         <th>ID</th>
         <th>Text</th>
         <th>Author</th>
-        <th>Update</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -35,6 +33,7 @@
               <a href="/update?id=<%= quote.id %>">
                 <button>Update</button>
               </a>
+              <button onclick="deleteQuote(<%= quote.id %>)">Delete</button>
             </td>
           </tr>
           <% }); %>
@@ -45,6 +44,18 @@
               <% } %>
     </tbody>
   </table>
+  <script>
+    async function deleteQuote(id) {
+      const response = await fetch('/api/quote/' + id, { method: 'DELETE' })
+      const data = await response.json()
+      if (data.success) {
+        alert('Quote deleted successfully!')
+        location.reload()
+      } else {
+        alert('Failed to delete the quote.')
+      }
+    }
+  </script>
 </body>
 
 </html>
