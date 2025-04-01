@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delete Quote</title>
+  <script>
+    async function deleteQuote(id) {
+      const response = await fetch('/api/quote/' + id, { method: 'DELETE' })
+      const data = await response.json()
+      if (data.success) {
+        alert('Quote deleted successfully!')
+        location.reload()
+      } else {
+        alert('Failed to delete the quote.')
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <h1>Delete a Quote</h1>
+  <ul>
+    <% if (quotes && quotes.length> 0) { %>
+      <% quotes.forEach(quote=> { %>
+        <li>
+          <%= quote.text %> - <%= quote.author %>
+              <button onclick="deleteQuote(<%= quote.id %>)">Delete</button>
+        </li>
+        <% }); %>
+          <% } else { %>
+            <li>No quotes available.</li>
+            <% } %>
+  </ul>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quotes</title>
+</head>
+
+<body>
+  <h1>Quotes</h1>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Text</th>
+        <th>Author</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (quotes && quotes.length> 0) { %>
+        <% quotes.forEach(quote=> { %>
+          <tr>
+            <td>
+              <%= quote.id %>
+            </td>
+            <td>
+              <%= quote.text %>
+            </td>
+            <td>
+              <%= quote.author %>
+            </td>
+          </tr>
+          <% }); %>
+            <% } else { %>
+              <tr>
+                <td colspan="3">No quotes available.</td>
+              </tr>
+              <% } %>
+    </tbody>
+  </table>
+</body>
+
+</html>
